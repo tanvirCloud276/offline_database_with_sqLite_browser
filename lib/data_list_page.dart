@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:employee_info_practice/db_helper.dart';
+import 'package:employee_info_practice/model.dart';
 import 'package:flutter/material.dart';
 
 class DataListPage extends StatefulWidget {
+  const DataListPage({super.key});
+
   @override
   _DataListPageState createState() => _DataListPageState();
 }
@@ -18,20 +23,23 @@ class _DataListPageState extends State<DataListPage> {
   Future<void> _loadData() async {
     final databaseHelper = DatabaseHelper();
     final dataList = await databaseHelper.getAllData();
-    print(dataList);
+    debugPrint("$dataList");
     setState(() {
       data = dataList;
     });
+      for (var item in data) {
+      print(item.toString());
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Data List'),
+        title: const Text('Data List'),
       ),
-      body: data.length == 0
-          ? Text("No Data Found")
+      body: data.isEmpty
+          ? const Text("No Data Found")
           : ListView.builder(
               itemCount: data.length,
               itemBuilder: (context, index) {

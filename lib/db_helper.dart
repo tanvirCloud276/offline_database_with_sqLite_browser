@@ -1,22 +1,10 @@
 import 'dart:io';
 
+import 'package:employee_info_practice/model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:flutter/services.dart';
 
-class MyData {
-  final int id;
-  final String name;
-  final String email;
-  final String address;
-
-  MyData({
-    required this.id,
-    required this.name,
-    required this.email,
-    required this.address,
-  });
-}
 
 class DatabaseHelper {
   static Database? _database;
